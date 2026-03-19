@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="relative w-full min-h-screen pt-20 pb-24 overflow-hidden bg-white flex items-start pt-40">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-100">
-          <source src="/web.mp4" type="video/mp4" />
+          <source src="/test 2.mp4" type="video/mp4" />
         </video>
       </div>
       <motion.div animate={{ x: [0, 30, 0], y: [0, -20, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-50/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />

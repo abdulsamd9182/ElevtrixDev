@@ -16,8 +16,16 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "EleytrixDev - Premium Software Solutions",
+  title: "ElevtrixDev - Premium Software Solutions",
   description: "Enterprise-grade software engineering and digital transformation services. Precision in code, excellence in execution.",
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

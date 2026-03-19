@@ -204,7 +204,7 @@ export default function ServicesGrid() {
                 </h3>
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  <span className="text-xs text-gray-400">Mobile Excellence</span>
+                  <span className="text-xs text-gray-400">Premium Service</span>
                 </div>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function ServicesGrid() {
             <div className="relative">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
                 <span className="w-1 h-3 bg-indigo-500 rounded-full" />
-                STACK WE LEVERAGE
+                TECHNOLOGIES WE USE
               </h4>
               <div className="flex items-center gap-3">
                 {selectedService.techIcons.map((Icon, i) => (

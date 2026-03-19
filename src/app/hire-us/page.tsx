@@ -176,8 +176,6 @@ export default function HireUs() {
       services: [
         { id: "manual-testing", name: "Manual Testing", icon: CheckCircle2 },
         { id: "automated-testing", name: "Automated Testing", icon: Gauge },
-        { id: "performance-testing", name: "Performance Testing", icon: Gauge },
-        { id: "security-testing", name: "Security Testing", icon: Lock },
       ]
     },
     {

@@ -35,7 +35,7 @@ const processSteps = [
     title: "Mobile UI/UX Design",
     description: "Crafting intuitive, platform-native interfaces (HIG & Material) with interactive protocols.",
     icon: PenTool,
-    color: "from-indigo-600 to-blue-500",
+    color: "from-purple-600 to-pink-500",
     deliverables: ["Hi-Fi Wireframes", "Interactive Prototype", "Mobile Design System", "Asset Optimization"]
   },
   {
@@ -43,7 +43,7 @@ const processSteps = [
     title: "Engineering & QA",
     description: "Building with Swift, Kotlin, or Flutter with rigorous sprint cycles and real-device testing.",
     icon: Code2,
-    color: "from-blue-700 to-indigo-600",
+    color: "from-emerald-600 to-teal-500",
     deliverables: ["Clean Codebase", "API Integration", "Real-Device Testing", "Security Hardening"]
   },
   {
@@ -51,12 +51,13 @@ const processSteps = [
     title: "Deployment & Scaling",
     description: "Handling Store submissions and providing post-launch growth iterations and CI/CD setup.",
     icon: Rocket,
-    color: "from-cyan-600 to-blue-700",
+    color: "from-amber-500 to-orange-600",
     deliverables: ["Store Submission", "ASO Strategy", "CI/CD Setup", "Scaling Roadmap"]
   }
 ];
 
-function ParticleCanvas() {
+// Particle background component
+function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -65,96 +66,206 @@ function ParticleCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = canvas.offsetWidth;
-    let height = canvas.offsetHeight;
-    canvas.width = width;
-    canvas.height = height;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
-    const particles: Particle[] = [];
-    class Particle {
-      x: number; y: number; size: number; speedX: number; speedY: number; opacity: number;
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.15;
-        this.speedY = (Math.random() - 0.5) * 0.15;
-        this.opacity = Math.random() * 0.15 + 0.05;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x > width) this.x = 0;
-        if (this.x < 0) this.x = width;
-        if (this.y > height) this.y = 0;
-        if (this.y < 0) this.y = height;
-      }
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 35; i++) particles.push(new Particle());
-
-    function animate() {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    const handleResize = () => {
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", resize);
+    resize();
+
+    const particles: {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+      hue: number;
+    }[] = [];
+
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: 1 + Math.random() * 3,
+        speedX: (Math.random() - 0.5) * 0.1,
+        speedY: (Math.random() - 0.5) * 0.1,
+        opacity: 0.1 + Math.random() * 0.2,
+        hue: 200 + Math.random() * 60,
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let p of particles) {
+        p.x += p.speedX + Math.sin(Date.now() * 0.001 + p.y * 0.01) * 0.01;
+        p.y += p.speedY + Math.cos(Date.now() * 0.001 + p.x * 0.01) * 0.01;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
+        ctx.fillStyle = `hsla(${p.hue}, 70%, 65%, ${p.opacity})`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none opacity-20 z-0" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ mixBlendMode: "overlay" }}
+    />
+  );
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
+    },
+  },
+};
+
 export default function Process() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMousePos({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden font-sans">
-      <ParticleCanvas />
+    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+      {/* Particle Background */}
+      <ParticleField />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
-        <div className="text-center mb-24">
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-8">
-            <Workflow className="w-4 h-4 text-blue-600" />
-            <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Protocol Loop</span>
-          </div>
+      {/* Dynamic gradient based on mouse */}
+      <motion.div
+        animate={{
+          background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(59,130,246,0.05) 0%, transparent 60%)`,
+        }}
+        transition={{ type: "spring", stiffness: 30, damping: 20 }}
+        className="absolute inset-0 pointer-events-none"
+      />
 
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+      {/* Animated Gradient Orbs */}
+      <motion.div
+        animate={{
+          x: [0, 40, 0],
+          y: [0, -30, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"
+      />
+      <motion.div
+        animate={{
+          x: [0, -40, 0],
+          y: [0, 40, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-50/30 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4 pointer-events-none"
+      />
+
+      <div className="relative max-w-6xl mx-auto px-6 md:px-8 z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { 
+              opacity: 1, 
+              y: 0,
+              transition: { 
+                staggerChildren: 0.1,
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1] 
+              }
+            }
+          }}
+          className="text-center mb-16"
+        >
+          <motion.h2
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { 
+                opacity: 1, 
+                y: 0,
+                transition: { duration: 0.6 }
+              }
+            }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900"
+          >
             GROWTH <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
               ARCHITECTURE
             </span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
+          <motion.p
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { duration: 0.8 } }
+            }}
+            className="text-gray-500 text-lg max-w-2xl mx-auto mt-4"
+          >
             A high-speed engineering workflow optimized for the mobile ecosystem, 
             transforming raw concepts into market leaders.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {processSteps.map((step, idx) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {/* Connecting Line (hidden on mobile) */}
+          <div className="absolute top-24 left-[15%] right-[15%] h-px bg-gradient-to-r from-blue-200 via-indigo-200 to-purple-200 hidden lg:block" />
+
+          {processSteps.map((step, index) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group relative"
+              key={index}
+              className="relative group"
             >
               <div className="absolute -top-3 left-6 z-10">
                 <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${step.color} text-white text-xs font-bold shadow-lg`}>
@@ -162,72 +273,68 @@ export default function Process() {
                 </div>
               </div>
 
-              <div className="h-full p-6 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl hover:border-transparent transition-all duration-500 shadow-lg hover:shadow-2xl group overflow-hidden flex flex-col">
-                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-tl from-gray-50 to-transparent rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="mb-4 relative z-10">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center mb-4 shadow-xl`}>
+              <motion.div
+                whileHover={{ y: -8 }}
+                className="relative p-6 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl hover:border-transparent transition-all duration-500 shadow-lg hover:shadow-2xl group overflow-hidden h-full"
+              >
+                {/* Gradient border on hover */}
+                <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} animate-gradient`} />
+                </div>
+
+                <div className="relative z-10">
+                  <div className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center mb-4 shadow-xl`}>
                     <step.icon className="w-7 h-7 text-white" />
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: index * 0.3,
+                      }}
+                      className={`absolute inset-0 rounded-xl bg-gradient-to-br ${step.color} blur-md`}
+                    />
                   </div>
+
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-gray-500 text-xs leading-relaxed mb-4">
+                    {step.description}
+                  </p>
+
+                  <div className="space-y-2">
+                    {step.deliverables.map((item) => (
+                      <div key={item} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-3 h-3 text-blue-500 flex-shrink-0" />
+                        <span className="text-[10px] text-gray-500">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className={`absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl ${step.color} opacity-0 group-hover:opacity-20 rounded-tl-xl transition-opacity duration-500`} />
                 </div>
-
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {step.title}
-                </h3>
-
-                <p className="text-gray-500 text-xs leading-relaxed mb-4">
-                  {step.description}
-                </p>
-
-                <div className="space-y-2 pt-4 border-t border-gray-50 mt-auto relative z-10">
-                  {step.deliverables.map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3 h-3 text-blue-500 flex-shrink-0" />
-                      <span className="text-[10px] text-gray-500">{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="absolute bottom-6 right-8 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                  <ChevronRight className="w-4 h-4 text-blue-200" />
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
-        </div>
-
-        <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           className="mt-20 p-8 border border-blue-50 bg-blue-50/30 rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-8"
-        >
-          <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-xl">
-              <ShieldCheck className="w-8 h-8 text-blue-600" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-gray-900">Enterprise Sovereignty</p>
-              <p className="text-[10px] font-medium text-blue-600 uppercase tracking-widest">Protocol v4.2 Security Standard</p>
-            </div>
-          </div>
-          <div className="flex -space-x-4">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="relative w-12 h-12 rounded-full border-4 border-white bg-gray-100 overflow-hidden shadow-lg">
-                <Image 
-                  src={`https://i.pravatar.cc/150?u=${i+10}`} 
-                  alt="User" 
-                  fill
-                  className="object-cover" 
-                />
-              </div>
-            ))}
-            <div className="w-12 h-12 rounded-full border-4 border-white bg-gray-900 flex items-center justify-center text-[10px] font-black text-white shadow-lg">
-              +12k
-            </div>
-          </div>
         </motion.div>
       </div>
+
+      <style jsx>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+      `}</style>
     </section>
   );
 }

@@ -13,215 +13,271 @@ import {
   ChevronRight
 } from "lucide-react";
 
-const stats = [
-  { label: "Domain Authority", value: 85, suffix: "+", icon: ShieldCheck },
-  { label: "Link Retention", value: 99, suffix: "%", icon: Link2 },
-  { label: "Organic Reach", value: 400, suffix: "%", icon: TrendingUp },
-  { label: "Elite Placements", value: 1000, suffix: "+", icon: Target },
-];
-
 const features = [
   {
     title: "Authority Outreach",
     description: "Multi-layered campaigns targeting top-tier publishers to secure high-equity backlink placements.",
     icon: Users,
+    color: "from-blue-500 to-cyan-500",
   },
   {
     title: "Equity Engineering",
     description: "Scientifically acquiring links that pass maximum domain trust signals to your SEO nodes.",
     icon: ShieldCheck,
+    color: "from-purple-500 to-pink-500",
   },
   {
     title: "Niche Placements",
     description: "Strategic placement of high-value content on industry-relevant domains for referral traffic.",
     icon: Search,
+    color: "from-yellow-500 to-orange-500",
   },
   {
     title: "Juice Architecture",
     description: "Optimizing the distribution of link equity across your site's siloes for maximum impact.",
     icon: Link2,
-  }
+    color: "from-green-500 to-emerald-500",
+  },
 ];
 
-const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
+// Simple Counter component
+function Counter({ value, label }: { value: string; label: string }) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
+  const numericValue = parseFloat(value);
 
   useEffect(() => {
-    if (inView) {
-      let start = 0;
-      const end = value;
-      const duration = 2000;
-      const startTime = performance.now();
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        setCount(Math.floor(progress * end));
-        if (progress < 1) {
-          requestAnimationFrame(animate);
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        if (prev >= numericValue) {
+          clearInterval(interval);
+          return numericValue;
         }
-      };
-      requestAnimationFrame(animate);
-    }
-  }, [inView, value]);
+        return prev + (numericValue / 50);
+      });
+    }, 20);
+    return () => clearInterval(interval);
+  }, [numericValue]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
-};
+  return (
+    <motion.div
+      whileHover={{ y: -2 }}
+      className="p-4 bg-gray-50/50 rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-300"
+    >
+      <div className="text-3xl font-black text-gray-900 mb-1">
+        {count.toFixed(1)}{label.includes("Rate") || label.includes("Reach") ? "%" : "+"}
+      </div>
+      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+        {label}
+      </div>
+    </motion.div>
+  );
+}
 
-const ParticleCanvas = () => {
+export default function Overview() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  // Mouse move handler
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Particles effect
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = canvas.width = canvas.offsetWidth;
-    let height = canvas.height = canvas.offsetHeight;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
-    const particles: { x: number; y: number; size: number; sx: number; sy: number }[] = [];
-    for (let i = 0; i < 50; i++) {
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    };
+    window.addEventListener("resize", resize);
+    resize();
+
+    const particleCount = 40;
+    const particles: {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+      hue: number;
+    }[] = [];
+
+    for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 2 + 0.5,
-        sx: (Math.random() - 0.5) * 0.3,
-        sy: (Math.random() - 0.5) * 0.3,
+        size: 1 + Math.random() * 2.5,
+        speedX: (Math.random() - 0.5) * 0.1,
+        speedY: (Math.random() - 0.5) * 0.1,
+        opacity: 0.1 + Math.random() * 0.2,
+        hue: 200 + Math.random() * 40,
       });
     }
 
-    let mouse = { x: -1000, y: -1000 };
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-
+    let time = 0;
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "rgba(245, 158, 11, 0.2)";
-      ctx.strokeStyle = "rgba(245, 158, 11, 0.1)";
 
-      particles.forEach((p, i) => {
-        p.x += p.sx;
-        p.y += p.sy;
-
-        if (p.x < 0 || p.x > width) p.sx *= -1;
-        if (p.y < 0 || p.y > height) p.sy *= -1;
-
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
+      for (let p of particles) {
+        // Mouse repulsion
+        if (mousePos.x && mousePos.y) {
+          const dx = p.x - mousePos.x;
+          const dy = p.y - mousePos.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 80) {
+            const angle = Math.atan2(dy, dx);
+            const force = (80 - dist) / 80 * 0.3;
+            p.x += Math.cos(angle) * force * 3;
+            p.y += Math.sin(angle) * force * 3;
+          }
         }
 
+        p.x += p.speedX + Math.sin(time + p.y * 0.01) * 0.01;
+        p.y += p.speedY + Math.cos(time + p.x * 0.01) * 0.01;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
+        ctx.fillStyle = `hsla(${p.hue}, 60%, 70%, ${p.opacity})`;
         ctx.fill();
-      });
+
+        // Glow for larger particles
+        if (p.size > 2) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * 2, 0, 2 * Math.PI);
+          ctx.fillStyle = `hsla(${p.hue}, 60%, 70%, 0.03)`;
+          ctx.fill();
+        }
+      }
+
+      time += 0.005;
       requestAnimationFrame(animate);
     };
     animate();
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
-};
+    return () => window.removeEventListener("resize", resize);
+  }, [mousePos]);
 
-export default function Overview() {
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-30">
-        <ParticleCanvas />
-      </div>
+    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+      {/* Particles Canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ mixBlendMode: "soft-light" }}
+      />
 
-      {/* Decorative Blobs */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-amber-50 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-orange-50 rounded-full blur-[100px] translate-x-1/4 -translate-y-1/4 pointer-events-none" />
+      {/* Subtle gradient orbs */}
+      <div className="absolute top-20 left-20 w-96 h-96 bg-blue-50/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-50/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10 font-sans">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-          
-          {/* Left Content */}
+      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          {/* Left column */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0, x: -40 },
+              visible: { 
+                opacity: 1, 
+                x: 0,
+                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+              }
+            }}
             className="lg:col-span-5"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-[2px] bg-amber-600" />
-              <span className="text-[10px] font-black text-amber-600 uppercase tracking-[0.3em]">Foundation & Trust</span>
+            {/* Heading */}
+            <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6">
+              ENGINEERING <br />
+              <span className="text-blue-600">
+                AUTHORITY SIGNALS
+              </span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-[1.1] mb-8 uppercase tracking-tight">
-              ENGINEERING <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700">AUTHORITY SIGNALS</span>
-            </h2>
-
-            <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-10 font-medium">
-              Backlinks are the hard currency of search authority. We don't just "get links"—we engineer a web of trust that signals absolute topical dominance to search engine algorithms, ensuring your domain stands as a lighthouse of industry expertise.
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+              Backlinks are the hard currency of search authority. We don't just "get links"—we engineer a web of trust that signals absolute topical dominance to search engine algorithms.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="p-6 bg-white border border-gray-100 rounded-[2rem] shadow-xl shadow-amber-500/5 group hover:border-amber-200 transition-colors"
-                >
-                  <div className="text-2xl font-black text-gray-900 mb-1 group-hover:text-amber-600 transition-colors">
-                    <Counter value={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{stat.label}</div>
-                </motion.div>
-              ))}
+            <div className="flex gap-6">
+              <Counter value="85" label="Domain Authority" />
+              <Counter value="99" label="Link Retention" />
             </div>
           </motion.div>
 
-          {/* Right Cards */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature, idx) => (
+          {/* Right column - Cards */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                }
+              }
+            }}
+            className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-5"
+          >
+            {features.map((feature) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group relative p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-2xl shadow-amber-500/5 overflow-hidden"
+                key={feature.title}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { duration: 0.5, ease: "easeOut" }
+                  }
+                }}
+                whileHover={{
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                className="group p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:border-blue-100 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.2)] transition-all duration-500"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-amber-50/50 rounded-bl-[3rem] pointer-events-none transition-transform group-hover:scale-110" />
-                
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-amber-600 flex items-center justify-center mb-6 shadow-xl shadow-amber-200 group-hover:rotate-6 transition-transform">
-                    <feature.icon className="w-7 h-7 text-white" />
-                  </div>
-
-                  <h3 className="text-xl font-black text-gray-900 mb-3 uppercase tracking-tight">{feature.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed font-medium mb-6">
-                    {feature.description}
-                  </p>
-
-                  <div className="flex items-center gap-2 text-[10px] font-black text-amber-600 uppercase tracking-widest">
-                    Strategy Detail <ChevronRight className="w-3 h-3" />
-                  </div>
+                {/* Icon with unique color */}
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-5 shadow-lg`}>
+                  <feature.icon className="w-5 h-5 text-white" />
                 </div>
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+
+                {/* Subtle corner accent */}
+                <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-gray-50 to-transparent rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
-          </div>
-
+          </motion.div>
         </div>
       </div>
     </section>

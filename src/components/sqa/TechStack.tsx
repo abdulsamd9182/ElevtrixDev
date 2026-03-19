@@ -25,16 +25,6 @@ const stacks = [
     stats: { projects: "60+", experience: "8+ years" }
   },
   {
-    category: "Performance Testing",
-    items: ["JMeter", "k6", "Gatling", "Locust", "BlazeMeter", "LoadRunner", "Artillery"],
-    icon: Gauge,
-    color: "from-green-500 to-emerald-500",
-    expertise: 90,
-    description: "Simulating extreme traffic and analyzing system behavior under stress. We identify memory leaks, database locks, and latency issues before they reach production.",
-    technologies: ["JMeter", "k6", "Gatling", "Grafana", "InfluxDB", "New Relic", "Datadog"],
-    stats: { projects: "45+", experience: "6+ years" }
-  },
-  {
     category: "API & Backend Testing",
     items: ["Postman", "REST Assured", "SoapUI", "Karate", "ReadyAPI", "Pact", "Swagger"],
     icon: Server,
@@ -44,16 +34,6 @@ const stacks = [
     technologies: ["Postman", "REST Assured", "GraphQL", "Karate DSL", "WireMock", "Swagger"],
     stats: { projects: "55+", experience: "7+ years" }
   },
-  {
-    category: "Security Testing",
-    items: ["Burp Suite", "OWASP ZAP", "Nessus", "Metasploit", "SonarQube", "Checkmarx", "Fortify"],
-    icon: Shield,
-    color: "from-red-500 to-orange-500",
-    expertise: 85,
-    description: "Identifying vulnerabilities and securing your applications against the OWASP Top 10 and advanced attack vectors through rigorous penetration testing.",
-    technologies: ["Burp Suite", "OWASP ZAP", "Nessus", "SAST", "DAST", "Kali Linux", "Wireshark"],
-    stats: { projects: "30+", experience: "5+ years" }
-  }
 ];
 
 // Enhanced Particle background with mouse interaction

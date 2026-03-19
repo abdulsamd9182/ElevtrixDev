@@ -3,20 +3,22 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion'
 import { ArrowUpRight, Sparkles, Calendar, Briefcase, Zap, Eye } from 'lucide-react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 
 const projects = [
   {
     id: 1,
-    title: 'Luxury Brand Identity',
-    category: 'Branding',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop',
-    description: 'Complete brand overhaul for a premium fashion label',
-    year: '2024',
-    client: 'Maison Ellora',
+    title: 'noTrainer',
+    category: 'Fitness App',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2670&auto=format&fit=crop',
+    description: 'A fitness web application that combines health calculators, interactive workout wizard, focus games, and a Kanban board.',
+    year: '2025',
+    client: 'Web Application',
     featured: true,
-    color: 'from-blue-500 to-purple-500'
+    color: 'from-blue-600 to-cyan-600',
+    href: '/portfolio/notrainer'
   },
   {
     id: 2,
@@ -373,33 +375,31 @@ export default function FeaturedProjects() {
 
                             {/* Action button with advanced hover */}
                             <div className="flex items-center justify-between">
-                              <motion.div
-                                className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white cursor-pointer overflow-hidden"
-                                whileHover={{
-                                  rotate: 12,
-                                  scale: 1.1,
-                                  backgroundColor: 'rgba(59,130,246,0.5)'
-                                }}
-                                whileTap={{ scale: 0.9 }}
-                              >
+                              <Link href={project.href || '#'}>
                                 <motion.div
-                                  animate={{ rotate: hoveredId === project.id ? [0, 360] : 0 }}
-                                  transition={{ duration: 0.5 }}
+                                  className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white cursor-pointer overflow-hidden"
+                                  whileHover={{
+                                    rotate: 12,
+                                    scale: 1.1,
+                                    backgroundColor: 'rgba(59,130,246,0.5)'
+                                  }}
+                                  whileTap={{ scale: 0.9 }}
                                 >
-                                  <ArrowUpRight className="w-5 h-5" />
+                                  <motion.div
+                                    animate={{ rotate: hoveredId === project.id ? [0, 360] : 0 }}
+                                    transition={{ duration: 0.5 }}
+                                  >
+                                    <ArrowUpRight className="w-5 h-5" />
+                                  </motion.div>
                                 </motion.div>
-                              </motion.div>
+                              </Link>
 
-                              <motion.span
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{
-                                  opacity: hoveredId === project.id ? 1 : 0,
-                                  x: hoveredId === project.id ? 0 : 10
-                                }}
-                                className="text-[10px] text-white/40 font-medium uppercase tracking-widest"
+                              <Link 
+                                href={project.href || '#'}
+                                className="text-[10px] text-white/40 font-medium uppercase tracking-widest hover:text-white transition-colors"
                               >
                                 View Case Study
-                              </motion.span>
+                              </Link>
                             </div>
                           </div>
 

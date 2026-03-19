@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 const industries = [
   {
     name: "Finance & Banking",
-    description: "Rigorous security and performance testing for highly sensitive financial transactions. We ensure zero vulnerabilities and flawless multi-platform integration.",
+    description: "Rigorous testing protocols for highly sensitive financial transactions. We ensure impeccable data accuracy and flawless multi-platform integration.",
     icon: Banknote,
     color: "from-blue-500 to-cyan-500",
     stats: "0 Critical Bugs in Prod"

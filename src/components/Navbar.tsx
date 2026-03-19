@@ -25,8 +25,6 @@ const navLinks = [
         items: [
           { name: "Manual Testing", href: "/services/manual-testing" },
           { name: "Automated Testing", href: "/services/automated-testing" },
-          { name: "Performance Testing", href: "/services/performance-testing" },
-          { name: "Security Testing", href: "/services/security-testing" },
         ]
       },
       { 

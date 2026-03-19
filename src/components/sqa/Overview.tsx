@@ -17,18 +17,6 @@ const features = [
     icon: ShieldCheck,
     color: "from-purple-500 to-pink-500",
   },
-  {
-    title: "Performance Testing",
-    description: "Ensuring applications perform flawlessly under heavy load with JMeter and k6.",
-    icon: Zap,
-    color: "from-yellow-500 to-orange-500",
-  },
-  {
-    title: "Security Testing",
-    description: "Hardened security through vulnerability scanning and penetration testing.",
-    icon: Activity,
-    color: "from-green-500 to-emerald-500",
-  },
 ];
 
 // Simple Counter component

@@ -7,7 +7,7 @@ import { ArrowRight, Smartphone, Zap, ShieldCheck } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pt-40 pb-24 overflow-hidden bg-white flex items-center">
+    <section className="relative w-full min-h-screen pt-20 pb-24 overflow-hidden bg-white flex items-start pt-40">
       {/* Video Background with Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -19,19 +19,18 @@ export default function Hero() {
         >
           <source src="/mobile.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
       </div>
 
       {/* Animated Blobs */}
       <motion.div
         animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none"
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none"
       />
       <motion.div
         animate={{ x: [0, -40, 0], y: [0, 30, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-50/40 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4 pointer-events-none"
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/40 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4 pointer-events-none"
       />
 
       <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10 w-full">
@@ -50,7 +49,7 @@ export default function Hero() {
             className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white drop-shadow-xl"
           >
             MOBILE <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
               ARCHITECTURE
             </span> <br />
             ENGINEERED.

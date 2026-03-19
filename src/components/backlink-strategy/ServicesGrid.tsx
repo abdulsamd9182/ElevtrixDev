@@ -92,177 +92,192 @@ const services = [
   }
 ];
 
-export default function ServicesGrid() {
+export default function ServicesSplit() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const startRotation = () => {
-    stopRotation();
-    intervalRef.current = setInterval(() => {
-      setSelectedIndex((prev) => (prev + 1) % services.length);
-    }, 5000);
-  };
-
-  const stopRotation = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-  };
-
-  useEffect(() => {
-    if (!isHovered) {
-      startRotation();
-    } else {
-      stopRotation();
-    }
-    return () => stopRotation();
-  }, [isHovered, selectedIndex]);
 
   const selectedService = services[selectedIndex];
 
   return (
-    <section 
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full py-24 bg-white overflow-hidden"
-    >
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10 font-sans">
+    <section className="relative w-full py-16 bg-white overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
+      {/* Subtle background gradient */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50/20 via-transparent to-transparent pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto px-6 md:px-8 z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight text-gray-900 uppercase">
-            LINK BUILDING <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700">SERVICES</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase">
+            LINK BUILDING <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">SERVICES</span>
           </h2>
-          <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-black tracking-widest text-gray-400 uppercase">
-            <div className="w-8 h-px bg-amber-200" />
+          <p className="text-gray-400 text-xs mt-2">
             Elite Authority Propagation
-            <div className="w-8 h-px bg-amber-200" />
-          </div>
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Service List */}
-          <div className="lg:col-span-5 flex flex-col gap-3">
+        {/* Split Layout: Left List + Right Card - Centered Vertically */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+          {/* Left List - Clickable Services - ONLY NAMES (5 columns) */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.05,
+                }
+              }
+            }}
+            className="lg:col-span-5 flex flex-col gap-2"
+          >
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { 
+                    opacity: 1, 
+                    x: 0,
+                    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                  }
+                }}
                 onClick={() => setSelectedIndex(index)}
-                className={`group relative p-5 rounded-2xl cursor-pointer transition-all duration-500 ${selectedIndex === index
-                    ? 'bg-white border border-amber-100 shadow-xl shadow-amber-500/10'
-                    : 'bg-transparent border border-transparent hover:bg-gray-50'
+                className={`group relative p-3.5 bg-white border rounded-xl cursor-pointer transition-all duration-300 ${selectedIndex === index
+                    ? 'border-blue-200 shadow-md shadow-blue-500/10 bg-gradient-to-r from-blue-50/50 to-transparent'
+                    : 'border-gray-100 hover:border-gray-200 hover:shadow-sm hover:bg-gray-50/50'
                   }`}
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 ${selectedIndex === index
-                      ? 'bg-gradient-to-br from-amber-600 to-orange-600 text-white shadow-lg'
-                      : 'bg-amber-50 text-amber-400'
+                <div className="flex items-center gap-3">
+                  {/* Icon */}
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 ${selectedIndex === index
+                      ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-200'
+                      : 'bg-gray-100 text-gray-400 group-hover:bg-gray-200'
                     }`}>
-                    <service.icon className="w-5 h-5" />
+                    <service.icon className="w-4.5 h-4.5" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className={`text-sm font-black uppercase tracking-tight transition-colors duration-500 ${selectedIndex === index ? 'text-gray-900' : 'text-gray-400 group-hover:text-gray-600'}`}>
+
+                  {/* Service Name */}
+                  <div className="flex-1 flex items-center justify-between">
+                    <span className={`text-sm font-semibold transition-colors duration-300 ${selectedIndex === index ? 'text-blue-600' : 'text-gray-700 font-medium'
+                      }`}>
                       {service.title}
-                    </h3>
-                    <p className="text-[10px] font-medium text-gray-400 mt-0.5">{service.shortDesc}</p>
+                    </span>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${selectedIndex === index
+                        ? 'bg-blue-100 text-blue-600'
+                        : 'bg-transparent text-gray-300 group-hover:bg-gray-100 group-hover:text-gray-400'
+                      }`}>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </div>
                   </div>
-                  <ChevronRight className={`w-4 h-4 transition-all duration-500 ${selectedIndex === index ? 'text-amber-600 translate-x-0' : 'text-gray-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'}`} />
                 </div>
 
+                {/* Active indicator line */}
                 {selectedIndex === index && (
                   <motion.div
                     layoutId="activeBacklinkIndicator"
-                    className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-amber-600 rounded-r-full"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 bg-blue-600 rounded-r-full shadow-[0_0_12px_rgba(37,99,235,0.4)]"
+                    initial={{ opacity: 0, scaleY: 0 }}
+                    animate={{ opacity: 1, scaleY: 1 }}
                     transition={{ duration: 0.3 }}
                   />
                 )}
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Details Card */}
+          {/* Right Card - Full Service Details (7 columns) - Centered */}
           <motion.div
             key={selectedIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-7 shadow-xl shadow-blue-500/5 sticky top-24 overflow-hidden"
           >
-            <div className="bg-white border border-gray-100 rounded-[2.5rem] p-10 shadow-2xl shadow-amber-500/5 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50/50 rounded-bl-[5rem] pointer-events-none" />
-              
-              <div className="flex justify-between items-start mb-10">
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-2xl bg-amber-600 flex items-center justify-center shadow-xl shadow-amber-200">
-                    <selectedService.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-black text-gray-900 uppercase tracking-tight">{selectedService.title}</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <Sparkles className="w-3 h-3 text-amber-600" />
-                      <span className="text-[10px] font-black text-amber-600 uppercase tracking-[0.2em]">Authority layer</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Impact</p>
-                  <p className="text-2xl font-black text-gray-900 leading-none">{selectedService.stats}</p>
-                </div>
+            {/* Background decorative elements */}
+            <div className="absolute top-0 right-0 w-40 h-40 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 opacity-50" />
+
+            {/* Header with icon and title */}
+            <div className="relative flex items-start gap-4 mb-5">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-xl shadow-blue-200/50">
+                <selectedService.icon className="w-8 h-8 text-white" />
               </div>
-
-              <div className="mb-10 relative">
-                <p className="text-gray-500 text-sm leading-relaxed border-l-2 border-amber-100 pl-8 group-hover:border-amber-600 transition-colors">
-                  {selectedService.fullDesc}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-600" />
-                    Strategy Nodes
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedService.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-500" />
-                        <span className="text-xs font-bold text-gray-600 uppercase tracking-tight">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-orange-600" />
-                    Pipeline Stack
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedService.tech.map((tool, i) => (
-                      <span key={i} className="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-tight shadow-sm">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 pt-10 border-t border-gray-50 flex justify-between items-center">
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                  {selectedService.title}
+                </h3>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
-                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Active Campaign</span>
+                  <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+                  <span className="text-xs text-gray-400">Authority Layer</span>
                 </div>
-                <button className="px-6 py-3 bg-gray-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-amber-600 transition-colors shadow-lg shadow-gray-200">
-                  Deploy Layer
-                </button>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Impact</p>
+                <p className="text-lg font-black text-gray-900 leading-none">{selectedService.stats}</p>
               </div>
             </div>
+
+            {/* Full Description */}
+            <div className="relative mb-5">
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {selectedService.fullDesc}
+              </p>
+            </div>
+
+            {/* Strategy Nodes Section */}
+            <div className="relative mb-5">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <span className="w-1 h-3 bg-blue-500 rounded-full" />
+                STRATEGY NODES
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedService.features.map((tag, i) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.05 }}
+                    className="px-3 py-1.5 bg-white border border-gray-100 text-gray-600 text-xs rounded-lg shadow-sm hover:border-blue-200 hover:text-blue-600 transition-colors cursor-default flex items-center gap-1"
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-blue-400" />
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+
+            {/* Pipeline Stack Section */}
+            <div className="relative">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <span className="w-1 h-3 bg-indigo-500 rounded-full" />
+                PIPELINE STACK
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedService.tech.map((tool, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    className="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-tight shadow-sm hover:border-blue-200 hover:text-blue-600 transition-all"
+                  >
+                    {tool}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Decorative corner */}
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-blue-100/30 to-indigo-100/30 rounded-tl-3xl pointer-events-none" />
           </motion.div>
         </div>
       </div>

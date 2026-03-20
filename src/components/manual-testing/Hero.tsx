@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pt-24 pb-24 overflow-hidden bg-white flex items-center justify-center">
+    <section className="relative w-full min-h-screen pt-24 pb-24 overflow-hidden bg-white flex items-center md:items-start md:pt-32">
       {/* Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -40,11 +40,11 @@ export default function Hero() {
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
           }}
-          className="space-y-5 max-w-xl text-center flex flex-col items-center"
+          className="space-y-5 max-w-xl"
         >
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white drop-shadow-xl"
+            className="text-center md:text-left text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white drop-shadow-xl"
           >
             METICULOUS <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
@@ -56,14 +56,14 @@ export default function Hero() {
 
           <motion.p
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="text-white text-sm md:text-base font-medium leading-relaxed max-w-md drop-shadow-sm"
+            className="text-center md:text-left mx-auto md:mx-0 text-white text-sm md:text-base font-medium leading-relaxed max-w-md drop-shadow-sm"
           >
             We deploy expert QA engineers who think like your real users — uncovering the edge cases, usability flaws, and complex defects that automation always misses.
           </motion.p>
 
           <motion.div
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="flex flex-wrap gap-3 pt-3 justify-center"
+            className="flex flex-wrap gap-3 pt-3 justify-center md:justify-start"
           >
             <Link href="/hire-us" passHref>
               <motion.button

@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pt-24 pb-24 overflow-hidden bg-white flex items-center md:items-start md:pt-40">
+    <section className="relative w-full min-h-screen pt-24 pb-24 overflow-hidden bg-white flex items-center md:items-start md:pt-32">
       {/* Video Background with Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video

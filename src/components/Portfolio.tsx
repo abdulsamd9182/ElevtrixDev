@@ -21,6 +21,18 @@ const projects = [
     href: '/portfolio/notrainer'
   },
   {
+    id: 7,
+    title: 'LogiSmart Solutions',
+    category: 'Dispatch Service',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2670&auto=format&fit=crop',
+    description: 'Professional dispatch services that maximize revenue while minimizing administrative burdens.',
+    year: '2025',
+    client: 'LogiSmart Solutions LLC',
+    featured: true,
+    color: 'from-blue-600 to-emerald-600',
+    href: '/portfolio/logismart'
+  },
+  {
     id: 2,
     title: 'AI Analytics Dashboard',
     category: 'Web App',

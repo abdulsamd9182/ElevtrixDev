@@ -58,9 +58,7 @@ const socialLinks = [
 ];
 
 const contactInfo = [
-  { icon: MapPin, text: "San Francisco, CA", isLink: false },
-  { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567", isLink: true },
-  { icon: Mail, text: "hello@elevtrix.dev", href: "mailto:hello@elevtrix.dev", isLink: true },
+  { icon: Mail, text: "support@elevytrixdev.com", href: "mailto:support@elevytrixdev.com", isLink: true },
   { icon: Clock, text: "Mon-Fri 9am-6pm PT", isLink: false },
 ];
 
@@ -342,7 +340,7 @@ export default function Footer() {
             {/* Email highlight */}
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-[#3b82f6]" />
-              <span className="text-xs font-medium text-gray-700">hello@elevtrix.dev</span>
+              <span className="text-xs font-medium text-gray-700">support@elevytrixdev.com</span>
             </div>
           </motion.div>
         </motion.div>

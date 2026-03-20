@@ -206,7 +206,7 @@ export default function HireUs() {
     const formData = new FormData(e.currentTarget);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/abdulsamadkhan9182@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/eaebfb7b94fcb657495f581150c67062", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

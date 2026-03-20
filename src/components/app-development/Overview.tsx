@@ -202,19 +202,19 @@ export default function Overview() {
             }}
             className="lg:col-span-5"
           >
-            <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6">
+            <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6 text-center lg:text-left">
               MOBILE <br />
               <span className="text-blue-600">
                 SOVEREIGNTY
               </span>
             </div>
 
-            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
               Engineering world-class mobile architectures that combine 
               intuitive design with technical absolute performance.
             </p>
 
-            <div className="flex gap-6">
+            <div className="flex gap-4 sm:gap-6 justify-center lg:justify-start">
               <Counter value="99.9%" label="Crash-Free Engineering" />
               <Counter value="60ms" label="Latency Protocol" />
             </div>

@@ -142,7 +142,7 @@ export default function Process() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       <ParticleField />
 
       <motion.div
@@ -172,19 +172,19 @@ export default function Process() {
           }}
           className="text-center mb-16"
         >
-          <motion.h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight text-gray-900 uppercase">
-            TECHNICAL{" "}
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-gray-900 uppercase">
+            TECHNICAL <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">
               OPTIMIZATION FLOW
             </span>
           </motion.h2>
 
-          <motion.p className="text-gray-400 text-xs mt-2 uppercase tracking-[0.2em] font-black">
+          <motion.p className="text-gray-400 text-xs mt-4 mx-auto max-w-xl uppercase tracking-[0.2em] font-black px-4">
             A systematic engineering approach to search dominance
           </motion.p>
         </motion.div>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-6">
           <div className="absolute top-24 left-[15%] right-[15%] h-px bg-gradient-to-r from-emerald-200 via-teal-200 to-cyan-200 hidden lg:block" />
 
           {processSteps.map((step, index) => (

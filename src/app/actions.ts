@@ -16,7 +16,7 @@ export async function sendHireUsEmail(formData: FormData) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'EleytrixDev <onboarding@resend.dev>',
+      from: 'ElevtrixDev <onboarding@resend.dev>',
       to: 'abdulsamadkhan9182@gmail.com',
       subject: `New Project Inquiry: ${projectType} from ${name}`,
       replyTo: email,
@@ -30,7 +30,7 @@ export async function sendHireUsEmail(formData: FormData) {
             <p><strong>Project Details:</strong></p>
             <p>${details}</p>
           </div>
-          <p style="margin-top: 30px; font-size: 12px; color: #888;">This email was sent from your EleytrixDev contact form.</p>
+          <p style="margin-top: 30px; font-size: 12px; color: #888;">This email was sent from your ElevtrixDev contact form.</p>
         </div>
       `,
     });

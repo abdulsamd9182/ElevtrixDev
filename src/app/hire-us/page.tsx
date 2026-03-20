@@ -245,7 +245,7 @@ export default function HireUs() {
 
       <Navbar />
 
-      <section className="flex-1 flex items-center px-6 py-20 relative z-10">
+      <section className="flex-1 flex items-center px-4 md:px-6 pt-28 pb-12 md:py-24 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 items-center w-full">
 
           {/* Left Side: Text Content */}
@@ -255,8 +255,8 @@ export default function HireUs() {
             animate="visible"
             className="lg:w-1/2 text-center lg:text-left"
           >
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-black mb-6 leading-[1.1] tracking-tight text-gray-900">
-              Ready to Scale <br />
+            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.1] tracking-tight text-gray-900">
+              Ready to Scale <br className="hidden md:block" />
               <span className="text-blue-600">
                 Your Digital Future?
               </span>
@@ -418,7 +418,7 @@ export default function HireUs() {
                       )}
                     </button>
 
-                    <p className="text-[7px] text-center text-gray-400 font-bold uppercase tracking-widest">* Signature EleytrixDev NDA included</p>
+                    <p className="text-[7px] text-center text-gray-400 font-bold uppercase tracking-widest">* Signature ElevtrixDev NDA included</p>
                   </form>
                 )}
               </div>
@@ -450,7 +450,7 @@ export default function HireUs() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-5xl bg-white/80 backdrop-blur-3xl rounded-[2.5rem] border border-white/50 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+              className="relative w-full max-w-5xl bg-white/80 backdrop-blur-3xl rounded-3xl md:rounded-[2.5rem] border border-white/50 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
             >
               <div className="p-6 md:p-8 pb-4 flex items-center justify-between border-b border-black/[0.03]">
                 <div>

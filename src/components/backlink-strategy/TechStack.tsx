@@ -69,12 +69,12 @@ const TiltCard = ({ tool, index }: { tool: typeof tools[0], index: number }) => 
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: index * 0.1 }}
-      className={`relative flex items-center justify-between w-full mb-20 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+      className={`relative flex flex-col md:flex-row items-center justify-between w-full mb-16 md:mb-20 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
     >
       {/* Content Card */}
       <motion.div
         whileHover={{ y: -4 }}
-        className="w-[45%] p-6 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl shadow-lg hover:shadow-xl group relative overflow-hidden"
+        className="w-full md:w-[45%] p-6 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl shadow-lg hover:shadow-xl group relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-[5rem] pointer-events-none transition-transform group-hover:scale-110" />
         
@@ -111,7 +111,7 @@ const TiltCard = ({ tool, index }: { tool: typeof tools[0], index: number }) => 
       </div>
 
       {/* Spacing for layout */}
-      <div className="w-[45%]" />
+      <div className="hidden md:block w-[45%]" />
     </motion.div>
   );
 };
@@ -124,18 +124,18 @@ export default function TechStack() {
   });
 
   return (
-    <section ref={containerRef} className="relative w-full py-24 bg-white overflow-hidden font-sans">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gray-100" />
+    <section ref={containerRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden font-sans">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gray-100 hidden md:block" />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
-        <div className="text-center mb-32">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
-            OUR LINK{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-bold">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
+        <div className="text-center mb-16 md:mb-32">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase">
+            OUR LINK <br className="md:hidden" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-bold uppercase">
               TECH DEPTH
             </span>
           </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
+          <p className="text-gray-400 text-sm md:text-base mt-4 px-4 uppercase tracking-[0.2em] font-black">
             Engineering authority for high-stakes sectors with absolute precision.
           </p>
         </div>

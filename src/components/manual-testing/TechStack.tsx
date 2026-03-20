@@ -151,7 +151,7 @@ export default function TechStack() {
                 <div className="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 hidden md:flex items-center justify-center z-10 shadow-lg shadow-blue-500/30">
                   <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 </div>
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'direction-rtl'}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'md:direction-rtl'}`}>
                   <div className={`${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} flex justify-${index % 2 === 0 ? 'end' : 'start'}`}>
                     <div className="md:sticky md:top-24 w-full max-w-sm">
                       <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4">
@@ -204,8 +204,8 @@ export default function TechStack() {
 
       <style jsx>{`
         @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .direction-rtl { direction: rtl; }
-        .direction-rtl > div { direction: ltr; }
+        .md\:direction-rtl { direction: rtl; }
+        .md\:direction-rtl > div { direction: ltr; }
       `}</style>
     </section>
   );

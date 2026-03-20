@@ -183,7 +183,7 @@ export default function Overview() {
   }, [mousePos]);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       {/* Particles Canvas */}
       <canvas
         ref={canvasRef}
@@ -195,8 +195,8 @@ export default function Overview() {
       <div className="absolute top-20 left-20 w-96 h-96 bg-blue-50/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-50/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
           {/* Left column */}
           <motion.div
             initial="hidden"
@@ -210,21 +210,21 @@ export default function Overview() {
                 transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
               }
             }}
-            className="lg:col-span-5"
+            className="lg:col-span-5 text-center lg:text-left"
           >
             {/* Heading */}
-            <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6">
+            <div className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6">
               ENGINEERING <br />
               <span className="text-blue-600">
                 AUTHORITY SIGNALS
               </span>
             </div>
 
-            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
               Backlinks are the hard currency of search authority. We don't just "get links"—we engineer a web of trust that signals absolute topical dominance to search engine algorithms.
             </p>
 
-            <div className="flex gap-6">
+            <div className="flex flex-row justify-center lg:justify-start gap-4 md:gap-6 max-w-lg mx-auto lg:mx-0">
               <Counter value="85" label="Domain Authority" />
               <Counter value="99" label="Link Retention" />
             </div>

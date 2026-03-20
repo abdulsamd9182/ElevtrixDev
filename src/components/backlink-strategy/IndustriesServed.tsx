@@ -25,7 +25,7 @@ const TiltCard = ({ item }: { item: typeof industries[0] }) => {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="flex-shrink-0 w-[320px] p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-lg hover:shadow-2xl hover:border-blue-100 group relative overflow-hidden flex flex-col"
+      className="flex-shrink-0 w-[280px] md:w-[320px] p-8 bg-white border border-gray-100 rounded-[2.5rem] shadow-lg hover:shadow-2xl hover:border-blue-100 group relative overflow-hidden flex flex-col"
     >
       <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/50 rounded-bl-[3rem] pointer-events-none" />
       
@@ -57,7 +57,7 @@ const TiltCard = ({ item }: { item: typeof industries[0] }) => {
 export default function IndustriesServed() {
 
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       {/* Background Particles (Static Placeholder) */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full blur-sm animate-pulse" />
@@ -65,16 +65,16 @@ export default function IndustriesServed() {
         <div className="absolute bottom-1/4 left-1/2 w-2 h-2 bg-purple-600 rounded-full blur-sm animate-pulse delay-1000" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
-        <div className="mb-10 text-center">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
+        <div className="mb-16 text-center">
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
-              INDUSTRIES WE{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-bold">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase">
+              INDUSTRIES WE <br className="md:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-bold uppercase">
                 DOMINATE
               </span>
             </h2>
-            <p className="text-gray-400 text-xs mt-2 mx-auto max-w-2xl">
+            <p className="text-gray-400 text-sm md:text-base mt-4 mx-auto max-w-2xl px-4 uppercase tracking-[0.2em] font-black">
               Engineering authority for high-stakes sectors with absolute precision.
             </p>
           </div>
@@ -83,8 +83,8 @@ export default function IndustriesServed() {
         {/* Industries Carousel with Seamless Animation */}
         <div className="relative w-full overflow-hidden">
           {/* Edge Fades for seamless transition */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
 
           <motion.div
             className="flex gap-8 w-max py-8"

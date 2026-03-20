@@ -231,7 +231,7 @@ export default function IndustriesServed() {
         className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/30 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4 pointer-events-none"
       />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
         {/* Header with enhanced animations - Text size matched with Services section */}
         <motion.div
           initial="hidden"
@@ -302,7 +302,7 @@ export default function IndustriesServed() {
                 <motion.div
                   key={`${item.name}-${idx}`}
                   whileHover={{ y: -8 }}
-                  className="group relative w-[320px] h-full flex flex-col"
+                  className="group relative w-[280px] sm:w-[320px] h-full flex flex-col"
                 >
                   {/* Glow Effect on Hover */}
                   <motion.div

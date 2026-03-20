@@ -159,34 +159,40 @@ export default function IndustriesServed() {
   }, []);
 
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       <ParticleField />
       
-      <div className="max-w-7xl mx-auto px-8 md:px-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
         <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight text-gray-900 uppercase"
+            className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-gray-900 uppercase"
           >
             INDUSTRIES WE{" "}
+            <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600">
               OPTIMIZE & DOMINATE
             </span>
           </motion.h2>
-          <p className="text-gray-400 text-xs mt-2 font-black uppercase tracking-[0.2em]">
+          <p className="text-gray-400 text-sm md:text-base mt-4 font-black uppercase tracking-[0.2em] px-4">
             Scaling semantic authority across high-intent search landscapes
           </p>
         </div>
 
-        <div 
-          ref={scrollRef}
-          className="flex gap-6 overflow-hidden py-10 mask-fade-x no-scrollbar"
-        >
-          {[...industries, ...industries].map((item, idx) => (
-            <TiltCard key={idx} item={item} />
-          ))}
+        <div className="relative w-full">
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-hidden py-10 no-scrollbar"
+          >
+            {[...industries, ...industries].map((item, idx) => (
+              <TiltCard key={idx} item={item} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

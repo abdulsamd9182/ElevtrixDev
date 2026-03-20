@@ -54,12 +54,12 @@ export default function Overview() {
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ mixBlendMode: "soft-light" }} />
       <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-50/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-50/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }} className="lg:col-span-5">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }} className="lg:col-span-5 text-center lg:text-left flex flex-col items-center lg:items-start">
             <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6">DEPLOY WITH <br /><span className="text-cyan-600">CONFIDENCE</span></div>
             <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg">Automation isn't just about speed — it's about building a safety net that lets your team innovate fearlessly, knowing every regression is caught instantly.</p>
-            <div className="flex gap-6"><Counter value="85" label="Faster Releases" /><Counter value="92" label="Coverage Rate" /></div>
+            <div className="flex gap-6 justify-center lg:justify-start"><Counter value="85" label="Faster Releases" /><Counter value="92" label="Coverage Rate" /></div>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ visible: { transition: { staggerChildren: 0.1 } } }} className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-5">
             {features.map(feature => (

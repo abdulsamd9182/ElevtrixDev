@@ -305,7 +305,7 @@ export default function TechStack() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       <ParticleField />
 
       <motion.div
@@ -371,9 +371,10 @@ export default function TechStack() {
                 transition: { duration: 0.6 }
               }
             }}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase"
           >
             OUR AD{" "}
+            <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
               TECH STACK
             </span>
@@ -384,7 +385,7 @@ export default function TechStack() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { duration: 0.8 } }
             }}
-            className="text-gray-500 text-xs mt-2 mx-auto max-w-xl"
+            className="text-gray-500 text-sm md:text-base mt-4 mx-auto max-w-xl px-4"
           >
             Equipped with industry-leading tools to track every click, conversion, and dollar spent.
           </motion.p>
@@ -410,8 +411,8 @@ export default function TechStack() {
                   <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 </div>
 
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'direction-rtl'}`}>
-                  <div className={`${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} flex justify-${index % 2 === 0 ? 'end' : 'start'}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-6 ${index % 2 === 0 ? '' : 'md:direction-rtl'}`}>
+                  <div className={`${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} flex justify-start md:justify-${index % 2 === 0 ? 'end' : 'start'}`}>
                     <div className="md:sticky md:top-24 w-full max-w-sm text-left">
                       <motion.div
                         whileHover={{ scale: 1.05 }}

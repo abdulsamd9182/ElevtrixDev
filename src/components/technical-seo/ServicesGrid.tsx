@@ -65,7 +65,7 @@ export default function ServicesGrid() {
   const selectedService = services[selectedIndex];
 
   return (
-    <section className="relative w-full py-16 bg-white overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
@@ -80,18 +80,18 @@ export default function ServicesGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase">
-            TECHNICAL SEO <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">SERVICES</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase">
+            TECHNICAL SEO <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">SERVICES</span>
           </h2>
-          <p className="text-gray-400 text-xs mt-2">
-            Select a service to view details
+          <p className="text-gray-400 text-sm md:text-base mt-4 px-4">
+            Select a service to view technical specifications
           </p>
         </motion.div>
 
         {/* Split Layout: Left List + Right Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left List */}
           <motion.div 
             initial="hidden"
@@ -166,17 +166,17 @@ export default function ServicesGrid() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-7 shadow-xl shadow-emerald-500/5 sticky top-24 overflow-hidden"
+            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-6 md:p-7 shadow-xl shadow-emerald-500/5 md:sticky md:top-24 overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 opacity-50" />
+            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50 shrink-0" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 opacity-50 shrink-0" />
 
-            <div className="relative flex items-start gap-4 mb-5">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center shadow-xl shadow-emerald-200/50">
+            <div className="relative flex flex-col md:flex-row items-start gap-4 mb-8">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center shadow-xl shadow-emerald-200/50 shrink-0">
                 <selectedService.icon className="w-8 h-8 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                   {selectedService.title}
                 </h3>
                 <div className="flex items-center gap-2">
@@ -184,20 +184,20 @@ export default function ServicesGrid() {
                   <span className="text-xs text-gray-400">Advanced Infrastructure</span>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-left md:text-right border-l-2 md:border-l-0 md:border-r-2 border-emerald-100 pl-4 md:pl-0 md:pr-4">
                 <span className="block text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-1">Target Metric</span>
-                <span className="text-2xl font-black text-gray-900 tracking-tighter">{selectedService.stats}</span>
+                <span className="text-xl md:text-2xl font-black text-gray-900 tracking-tighter">{selectedService.stats}</span>
               </div>
             </div>
 
-            <div className="relative mb-5">
-              <p className="text-gray-600 text-sm leading-relaxed border-l-2 border-emerald-600 pl-6">
+            <div className="relative mb-8">
+              <p className="text-gray-600 text-sm leading-relaxed border-l-2 border-emerald-600 pl-4 md:pl-6">
                 {selectedService.description}
               </p>
             </div>
 
-            <div className="relative mb-5">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+            <div className="relative mb-8">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
                 <span className="w-1 h-3 bg-emerald-500 rounded-full" />
                 CORE FOCUS AREAS
               </h4>
@@ -218,11 +218,11 @@ export default function ServicesGrid() {
             </div>
 
             <div className="relative">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
                 <span className="w-1 h-3 bg-teal-500 rounded-full" />
                 TECH STACK
               </h4>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 {selectedService.techIcons.map((Icon, i) => (
                   <motion.div
                     key={i}

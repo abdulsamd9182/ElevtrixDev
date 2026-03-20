@@ -98,7 +98,7 @@ export default function ServicesSplit() {
   const selectedService = services[selectedIndex];
 
   return (
-    <section className="relative w-full py-16 bg-white overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
@@ -113,18 +113,18 @@ export default function ServicesSplit() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase">
-            LINK BUILDING <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">SERVICES</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase">
+            LINK BUILDING <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">SERVICES</span>
           </h2>
-          <p className="text-gray-400 text-xs mt-2">
+          <p className="text-gray-400 text-sm md:text-base mt-4 px-4 uppercase tracking-[0.2em] font-black">
             Elite Authority Propagation
           </p>
         </motion.div>
 
         {/* Split Layout: Left List + Right Card - Centered Vertically */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left List - Clickable Services - ONLY NAMES (5 columns) */}
           <motion.div 
             initial="hidden"
@@ -202,42 +202,42 @@ export default function ServicesSplit() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-7 shadow-xl shadow-blue-500/5 sticky top-24 overflow-hidden"
+            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-6 md:p-7 shadow-xl shadow-blue-500/5 md:sticky md:top-24 overflow-hidden"
           >
             {/* Background decorative elements */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 opacity-50" />
+            <div className="absolute top-0 right-0 w-40 h-40 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50 shrink-0" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 opacity-50 shrink-0" />
 
             {/* Header with icon and title */}
-            <div className="relative flex items-start gap-4 mb-5">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-xl shadow-blue-200/50">
+            <div className="relative flex flex-col md:flex-row items-start gap-4 mb-8">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-xl shadow-blue-200/50 shrink-0">
                 <selectedService.icon className="w-8 h-8 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                   {selectedService.title}
                 </h3>
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                  <span className="text-xs text-gray-400">Authority Layer</span>
+                  <span className="text-xs text-gray-400 uppercase tracking-widest font-black">Authority Layer</span>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-left md:text-right border-l-2 md:border-l-0 md:border-r-2 border-blue-100 pl-4 md:pl-0 md:pr-4">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Impact</p>
-                <p className="text-lg font-black text-gray-900 leading-none">{selectedService.stats}</p>
+                <p className="text-xl md:text-2xl font-black text-gray-900 leading-none">{selectedService.stats}</p>
               </div>
             </div>
 
             {/* Full Description */}
-            <div className="relative mb-5">
-              <p className="text-gray-600 text-sm leading-relaxed">
+            <div className="relative mb-8">
+              <p className="text-gray-600 text-sm leading-relaxed border-l-2 border-blue-600 pl-4 md:pl-6">
                 {selectedService.fullDesc}
               </p>
             </div>
 
             {/* Strategy Nodes Section */}
-            <div className="relative mb-5">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+            <div className="relative mb-8">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
                 <span className="w-1 h-3 bg-blue-500 rounded-full" />
                 STRATEGY NODES
               </h4>
@@ -248,7 +248,7 @@ export default function ServicesSplit() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.05 }}
-                    className="px-3 py-1.5 bg-white border border-gray-100 text-gray-600 text-xs rounded-lg shadow-sm hover:border-blue-200 hover:text-blue-600 transition-colors cursor-default flex items-center gap-1"
+                    className="px-3 py-1.5 bg-white border border-gray-100 text-gray-600 text-[10px] font-bold rounded-lg shadow-sm hover:border-blue-200 hover:text-blue-600 transition-colors cursor-default flex items-center gap-1"
                   >
                     <CheckCircle2 className="w-3 h-3 text-blue-400" />
                     {tag}
@@ -259,7 +259,7 @@ export default function ServicesSplit() {
 
             {/* Pipeline Stack Section */}
             <div className="relative">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
                 <span className="w-1 h-3 bg-indigo-500 rounded-full" />
                 PIPELINE STACK
               </h4>
@@ -268,7 +268,7 @@ export default function ServicesSplit() {
                   <motion.div
                     key={i}
                     whileHover={{ y: -2, scale: 1.05 }}
-                    className="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-tight shadow-sm hover:border-blue-200 hover:text-blue-600 transition-all"
+                    className="px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-tight shadow-sm hover:border-blue-200 hover:text-blue-600 transition-all font-black"
                   >
                     {tool}
                   </motion.div>

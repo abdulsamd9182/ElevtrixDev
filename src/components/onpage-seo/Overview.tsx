@@ -153,7 +153,7 @@ export default function Overview() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       <ParticleCanvas />
 
       {/* Interactive Background Glow */}
@@ -165,14 +165,14 @@ export default function Overview() {
         className="absolute inset-0 pointer-events-none"
       />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6"
+            className="lg:col-span-6 text-center lg:text-left"
           >
             <div className="text-[10px] font-black tracking-[0.3em] text-indigo-600 uppercase mb-4">Semantic Intelligence</div>
             <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 leading-[1.1] mb-8">
@@ -182,11 +182,11 @@ export default function Overview() {
               </span>
             </h2>
 
-            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-10 max-w-xl">
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
               We move beyond simple keywords. Our On-Page strategy engineers deep relevance across your entire domain architecture, ensuring search engines recognize you as the ultimate authority in your niche.
             </p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto lg:mx-0">
               {stats.map((stat) => (
                 <div key={stat.label} className="group p-6 bg-white border border-gray-100 rounded-3xl hover:border-indigo-100 transition-all duration-300 shadow-xl shadow-indigo-500/5 hover:-translate-y-1">
                   <div className="text-3xl font-black text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">

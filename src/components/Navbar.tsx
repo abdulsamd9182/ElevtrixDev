@@ -74,8 +74,8 @@ export default function Navbar() {
         )}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-1.5 focus:outline-none">
-            <span className="text-lg font-bold tracking-tight text-black">
-              Eleytrix<span className="text-[#3b82f6] italic">Dev</span>
+            <span className="text-lg md:text-xl font-bold tracking-tight text-black">
+              Elevtrix<span className="text-[#3b82f6] italic">Dev</span>
             </span>
           </Link>
 
@@ -172,8 +172,8 @@ export default function Navbar() {
             className="fixed inset-0 z-[110] md:hidden bg-white/98 backdrop-blur-2xl p-6 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-8">
-              <span className="text-lg font-bold tracking-tight text-black">
-                Eleytrix<span className="text-[#3b82f6] italic">Dev</span>
+              <span className="text-xl font-bold tracking-tight text-black">
+                Elevtrix<span className="text-[#3b82f6] italic">Dev</span>
               </span>
               <button onClick={() => setIsOpen(false)} className="text-black bg-black/5 p-2 rounded-lg">
                 <X className="w-6 h-6" />

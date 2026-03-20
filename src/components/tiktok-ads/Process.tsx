@@ -156,7 +156,7 @@ export default function Process() {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       <ParticleField />
 
       <motion.div
@@ -222,9 +222,10 @@ export default function Process() {
                 transition: { duration: 0.6 }
               }
             }}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase"
           >
             OUR TIKTOK ADS{" "}
+            <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-600 to-pink-700">
               OPTIMIZATION PROCESS
             </span>
@@ -235,7 +236,7 @@ export default function Process() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { duration: 0.8 } }
             }}
-            className="text-gray-500 text-xs mt-2 mx-auto max-w-2xl"
+            className="text-gray-500 text-sm md:text-base mt-4 mx-auto max-w-2xl px-4"
           >
             A high-energy content engineering methodology designed to transform viral signals into scalable, compounding revenue.
           </motion.p>
@@ -246,7 +247,7 @@ export default function Process() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-6"
         >
           <div className="absolute top-24 left-[15%] right-[15%] h-px bg-gradient-to-r from-pink-200 via-rose-200 to-purple-200 hidden lg:block" />
 

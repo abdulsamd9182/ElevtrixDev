@@ -46,7 +46,7 @@ export default function IndustriesServed() {
       <motion.div animate={{ background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(6,182,212,0.03) 0%, transparent 50%)` }} transition={{ type: "spring", stiffness: 50, damping: 30 }} className="absolute inset-0 pointer-events-none" />
       <motion.div animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }} className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-50/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
       <motion.div animate={{ x: [0, -30, 0], y: [0, 30, 0], scale: [1, 1.2, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/30 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }} className="mb-10 text-center">
           <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">INDUSTRIES <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">WE AUTOMATE</span></motion.h2>
           <motion.p variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.8 } } }} className="text-gray-400 text-xs mt-2 mx-auto max-w-2xl">Building automation frameworks tailored to domain-specific workflows and compliance needs.</motion.p>
@@ -57,7 +57,7 @@ export default function IndustriesServed() {
           <div className="overflow-hidden">
             <motion.div className="flex gap-6 w-max py-8" animate={{ x: [0, "-50%"] }} transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 40, ease: "linear" } }} whileHover={{ transition: { duration: 100 } }}>
               {[...industries, ...industries].map((item, idx) => (
-                <motion.div key={`${item.name}-${idx}`} whileHover={{ y: -8 }} className="group relative w-[320px] min-h-[300px] flex flex-col">
+                <motion.div key={`${item.name}-${idx}`} whileHover={{ y: -8 }} className="group relative w-[280px] sm:w-[320px] min-h-[300px] flex flex-col">
                   <motion.div initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} transition={{ duration: 0.3 }} className={`absolute -inset-0.5 bg-gradient-to-r ${item.color} rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-30 transition-opacity`} />
                   <TiltCard className="relative p-8 bg-white border border-gray-100 rounded-[2.5rem] hover:border-transparent transition-all duration-500 shadow-lg hover:shadow-2xl h-full flex flex-col">
                     <div className="relative mb-6"><div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mx-auto shadow-xl`}><item.icon className="w-8 h-8 text-white" /></div></div>

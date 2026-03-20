@@ -72,7 +72,7 @@ const TiltCard = ({ tool, index }: { tool: typeof tools[0]; index: number }) => 
   const isEven = index % 2 === 0;
 
   return (
-    <div className={`relative flex items-center justify-between mb-24 last:mb-0 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
+    <div className={`relative flex flex-col md:flex-row items-center justify-between mb-16 md:mb-24 last:mb-0 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
       {/* Connector Line */}
       <div className="absolute left-1/2 top-0 bottom-[-96px] w-px bg-gradient-to-b from-indigo-200 via-indigo-100 to-transparent -translate-x-1/2 hidden lg:block last:hidden" />
       
@@ -139,28 +139,28 @@ const TiltCard = ({ tool, index }: { tool: typeof tools[0]; index: number }) => 
 
 export default function TechStack() {
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       {/* Animated Background Orbs */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-indigo-50/40 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-violet-50/40 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-8 md:px-16 relative z-10">
-        <div className="text-center mb-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
+        <div className="text-center mb-16 md:mb-24">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight text-gray-900 uppercase"
+            className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-gray-900 uppercase"
           >
-            THE ON-PAGE <br />
+            THE ON-PAGE <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 uppercase leading-tight">
               SEO STACK
             </span>
           </motion.h2>
-          <div className="mt-4 flex items-center justify-center gap-2">
-            <div className="w-8 h-px bg-indigo-200" />
-            <span className="text-gray-400 text-xs font-black uppercase tracking-[0.2em]">Elite SEO Intelligence Pipeline</span>
-            <div className="w-8 h-px bg-indigo-200" />
+          <div className="mt-4 flex flex-col md:flex-row items-center justify-center gap-2">
+            <div className="w-8 h-px bg-indigo-200 hidden md:block" />
+            <span className="text-gray-400 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-center px-4">Elite SEO Intelligence Pipeline</span>
+            <div className="w-8 h-px bg-indigo-200 hidden md:block" />
           </div>
         </div>
 

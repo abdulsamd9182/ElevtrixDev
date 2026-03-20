@@ -52,15 +52,15 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "Twitter", href: "https://twitter.com/eleytrix", icon: Twitter },
-  { name: "LinkedIn", href: "https://linkedin.com/company/eleytrix", icon: Linkedin },
-  { name: "GitHub", href: "https://github.com/eleytrix", icon: Github },
+  { name: "Twitter", href: "https://twitter.com/elevtrix", icon: Twitter },
+  { name: "LinkedIn", href: "https://linkedin.com/company/elevtrix", icon: Linkedin },
+  { name: "GitHub", href: "https://github.com/elevtrix", icon: Github },
 ];
 
 const contactInfo = [
   { icon: MapPin, text: "San Francisco, CA", isLink: false },
   { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567", isLink: true },
-  { icon: Mail, text: "hello@eleytrix.dev", href: "mailto:hello@eleytrix.dev", isLink: true },
+  { icon: Mail, text: "hello@elevtrix.dev", href: "mailto:hello@elevtrix.dev", isLink: true },
   { icon: Clock, text: "Mon-Fri 9am-6pm PT", isLink: false },
 ];
 
@@ -225,7 +225,7 @@ export default function Footer() {
                 whileHover={{ scale: 1.02 }}
                 className="text-2xl font-black tracking-tight text-black group-hover:text-[#3b82f6] transition-colors inline-block"
               >
-                Eleytrix<span className="text-[#3b82f6] italic">Dev</span>
+                Elevtrix<span className="text-[#3b82f6] italic">Dev</span>
               </motion.span>
             </Link>
 
@@ -342,7 +342,7 @@ export default function Footer() {
             {/* Email highlight */}
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-[#3b82f6]" />
-              <span className="text-xs font-medium text-gray-700">hello@eleytrix.dev</span>
+              <span className="text-xs font-medium text-gray-700">hello@elevtrix.dev</span>
             </div>
           </motion.div>
         </motion.div>
@@ -370,7 +370,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-2">
             <span className="text-[8px] font-black uppercase tracking-[0.4em] text-gray-300">
-              © {currentYear} EleytrixDev Systems
+              © {currentYear} ElevtrixDev Systems
             </span>
             <ArrowUpRight className="w-3 h-3 text-gray-400" />
           </div>

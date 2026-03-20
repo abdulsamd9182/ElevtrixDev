@@ -503,7 +503,7 @@ export default function ProcessSection() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h40v40H0z\' fill=\'none\' stroke=\'rgba(0,0,0,0.02)\' stroke-width=\'1\'/%3E%3C/svg%3E')]"></div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
@@ -517,15 +517,15 @@ export default function ProcessSection() {
         </div>
 
         {/* Category Tabs */}
-        <div className={`flex justify-center gap-2 mb-10 transition-all duration-1000 delay-150 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        <div className={`flex flex-wrap justify-center gap-2 mb-10 transition-all duration-1000 delay-150 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === cat.id
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              className={`flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full text-[11px] md:text-sm font-bold uppercase tracking-wider transition-all duration-300 ${selectedCategory === cat.id
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
                 }`}
             >
               {cat.icon}

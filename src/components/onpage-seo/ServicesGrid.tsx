@@ -114,14 +114,14 @@ export default function ServicesGrid() {
     >
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-50/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight text-gray-900 uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-gray-900 uppercase">
             OUR ON-PAGE <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600">SERVICES</span>
           </h2>
           <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-black tracking-widest text-gray-400 uppercase">
@@ -177,32 +177,32 @@ export default function ServicesGrid() {
             key={selectedIndex}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="lg:col-span-7"
+            className="lg:col-span-7 md:sticky md:top-24"
           >
-            <div className="bg-white border border-gray-100 rounded-[2.5rem] p-10 shadow-2xl shadow-indigo-500/5 relative overflow-hidden">
+            <div className="bg-white border border-gray-100 rounded-[2.5rem] p-6 md:p-10 shadow-2xl shadow-indigo-500/5 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50/50 rounded-bl-[5rem] pointer-events-none" />
               
-              <div className="flex justify-between items-start mb-10">
+              <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-10">
                 <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center shadow-xl shadow-indigo-200">
+                  <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center shadow-xl shadow-indigo-200 shrink-0">
                     <selectedService.icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-gray-900 uppercase tracking-tight">{selectedService.title}</h3>
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900 uppercase tracking-tight">{selectedService.title}</h3>
                     <div className="flex items-center gap-2 mt-1">
                       <Sparkles className="w-3 h-3 text-indigo-600" />
                       <span className="text-[10px] font-black text-indigo-600 uppercase tracking-[0.2em]">Strategic Layer</span>
                     </div>
                   </div>
                 </div>
-                <div className="text-right">
+                <div className="md:text-right border-l-2 md:border-l-0 md:border-r-2 border-indigo-100 pl-4 md:pl-0 md:pr-4">
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Impact</p>
-                  <p className="text-2xl font-black text-gray-900 leading-none">{selectedService.stats}</p>
+                  <p className="text-xl md:text-2xl font-black text-gray-900 leading-none">{selectedService.stats}</p>
                 </div>
               </div>
 
               <div className="mb-10 relative">
-                <p className="text-gray-500 text-sm leading-relaxed border-l-2 border-indigo-100 pl-8 group-hover:border-indigo-600 transition-colors">
+                <p className="text-gray-500 text-sm leading-relaxed border-l-2 border-indigo-100 pl-4 md:pl-8 group-hover:border-indigo-600 transition-colors">
                   {selectedService.fullDesc}
                 </p>
               </div>
@@ -238,12 +238,12 @@ export default function ServicesGrid() {
                 </div>
               </div>
 
-              <div className="mt-10 pt-10 border-t border-gray-50 flex justify-between items-center">
+              <div className="mt-10 pt-10 border-t border-gray-50 flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Active Optimization</span>
                 </div>
-                <button className="px-6 py-3 bg-gray-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-colors shadow-lg shadow-gray-200">
+                <button className="w-full md:w-auto px-6 py-3 bg-gray-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-colors shadow-lg shadow-gray-200">
                   Configure Layer
                 </button>
               </div>

@@ -397,7 +397,7 @@ export default function TechStack() {
                   <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 </div>
 
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'direction-rtl'}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'md:direction-rtl'}`}>
                   <div className={`${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} flex justify-${index % 2 === 0 ? 'end' : 'start'}`}>
                     <div className="md:sticky md:top-24 w-full max-w-sm">
                       <motion.div
@@ -507,10 +507,10 @@ export default function TechStack() {
           background-size: 200% 200%;
           animation: gradient 3s ease infinite;
         }
-        .direction-rtl {
+        .md\:direction-rtl {
           direction: rtl;
         }
-        .direction-rtl > div {
+        .md\:direction-rtl > div {
           direction: ltr;
         }
       `}</style>

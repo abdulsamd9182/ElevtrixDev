@@ -7,7 +7,7 @@ import { ArrowRight, Smartphone, Zap, ShieldCheck } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pt-20 pb-24 overflow-hidden bg-white flex items-start pt-40">
+    <section className="relative w-full min-h-screen pt-24 pb-24 overflow-hidden bg-white flex items-center md:items-start md:pt-40">
       {/* Video Background with Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -46,7 +46,7 @@ export default function Hero() {
           {/* Main Heading */}
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white drop-shadow-xl"
+            className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white drop-shadow-2xl text-center md:text-left"
           >
             MOBILE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
@@ -58,7 +58,7 @@ export default function Hero() {
           {/* Subheading */}
           <motion.p
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="text-white text-sm md:text-base font-medium leading-relaxed max-w-md drop-shadow-sm"
+            className="text-white/90 text-sm md:text-base font-medium leading-relaxed max-w-md drop-shadow-sm text-center md:text-left mx-auto md:mx-0"
           >
             Engineering high-performance, enterprise-grade mobile applications that deliver 
             seamless experiences across iOS and Android ecosystems.
@@ -67,7 +67,7 @@ export default function Hero() {
           {/* Buttons */}
           <motion.div
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="flex flex-wrap gap-3 pt-3"
+            className="flex flex-wrap gap-3 pt-3 justify-center md:justify-start"
           >
             <Link href="/hire-us" passHref>
               <motion.button

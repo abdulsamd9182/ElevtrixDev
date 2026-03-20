@@ -118,7 +118,7 @@ export default function Process() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full py-24 bg-white overflow-hidden font-sans"
+      className="relative w-full py-16 md:py-24 bg-white overflow-hidden font-sans"
     >
       <ParticleBackground />
 
@@ -130,19 +130,19 @@ export default function Process() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
-        <div className="flex flex-col items-center text-center mb-16">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
+        <div className="flex flex-col items-center text-center mb-16 px-4">
           
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 text-center">
-            THE AUTHORITY <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">PIPELINE</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 text-center">
+            THE AUTHORITY <br className="md:hidden" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 uppercase">PIPELINE</span>
           </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
+          <p className="text-gray-500 text-sm md:text-base max-w-lg mx-auto mt-4 uppercase tracking-[0.2em] font-black">
             A scientifically audited process for link equity acquisition and propagation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 cursor-default">
           {steps.map((step, idx) => (
             <motion.div
               key={step.number}

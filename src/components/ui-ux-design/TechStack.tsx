@@ -421,7 +421,7 @@ export default function TechStackVertical() {
                 </div>
 
                 {/* Card - Alternating left/right with smaller cards */}
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'direction-rtl'}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${index % 2 === 0 ? '' : 'md:direction-rtl'}`}>
                   {/* Left Column - Icon & Category */}
                   <div className={`${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'} flex justify-${index % 2 === 0 ? 'end' : 'start'}`}>
                     <div className="md:sticky md:top-24 w-full max-w-sm">
@@ -540,10 +540,10 @@ export default function TechStackVertical() {
           background-size: 200% 200%;
           animation: gradient 3s ease infinite;
         }
-        .direction-rtl {
+        .md\:direction-rtl {
           direction: rtl;
         }
-        .direction-rtl > div {
+        .md\:direction-rtl > div {
           direction: ltr;
         }
       `}</style>

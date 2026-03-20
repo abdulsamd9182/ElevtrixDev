@@ -189,7 +189,7 @@ export default function IndustriesServed() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-white overflow-hidden">
       <ParticleField />
 
       <motion.div
@@ -227,7 +227,7 @@ export default function IndustriesServed() {
         className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/30 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4 pointer-events-none"
       />
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-16 z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -255,9 +255,10 @@ export default function IndustriesServed() {
                 transition: { duration: 0.6 }
               }
             }}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase"
           >
             INDUSTRIES WE{" "}
+            <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               SCALE
             </span>
@@ -267,15 +268,15 @@ export default function IndustriesServed() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { duration: 0.8 } }
             }}
-            className="text-gray-400 text-xs mt-2 mx-auto max-w-2xl"
+            className="text-gray-400 text-sm md:text-base mt-4 mx-auto max-w-2xl px-4"
           >
             Specialized Google search advertising expertise delivering measurable ROI across high-growth industry sectors.
           </motion.p>
         </motion.div>
 
         <div className="relative w-full">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
 
           <div className="overflow-hidden">
             <motion.div
@@ -295,7 +296,7 @@ export default function IndustriesServed() {
                 <motion.div
                   key={`${item.name}-${idx}`}
                   whileHover={{ y: -8 }}
-                  className="group relative w-[320px] flex flex-col"
+                  className="group relative w-[280px] md:w-[320px] flex flex-col"
                 >
                   <motion.div
                     initial={{ opacity: 0 }}

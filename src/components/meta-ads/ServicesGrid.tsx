@@ -118,7 +118,7 @@ export default function ServicesSplit() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 uppercase">
             OUR META ADS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">SERVICES</span>
           </h2>
           <p className="text-gray-400 text-xs mt-2">
@@ -127,7 +127,7 @@ export default function ServicesSplit() {
         </motion.div>
 
         {/* Split Layout: Left List + Right Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           {/* Left List - Clickable Services */}
           <motion.div 
             initial="hidden"
@@ -205,7 +205,7 @@ export default function ServicesSplit() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-7 shadow-xl shadow-blue-500/5 sticky top-24 overflow-hidden"
+            className="lg:col-span-7 bg-gradient-to-br from-white to-gray-50/30 border border-gray-100 rounded-2xl p-7 shadow-xl shadow-blue-500/5 lg:sticky lg:top-24 overflow-hidden"
           >
             {/* Background decorative elements */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50" />

@@ -158,7 +158,7 @@ export default function FeaturedProjects() {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h60v60H0z\' fill=\'none\' stroke=\'rgba(255,255,255,0.02)\' stroke-width=\'1\'/%3E%3C/svg%3E')]"></div>
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6">
           {/* Header with floating badge */}
           <div className="text-center mb-16">
 
@@ -212,7 +212,7 @@ export default function FeaturedProjects() {
             </motion.div>
 
 
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               <AnimatePresence mode="popLayout">
                 {filteredProjects.map((project, index) => {
                   const isLeft = index % 2 === 0
@@ -287,7 +287,7 @@ export default function FeaturedProjects() {
 
                       {/* Card with advanced hover effects */}
                       <motion.div
-                        className="md:w-5/12"
+                        className="w-full md:w-5/12"
                         whileHover={{ y: -8 }}
                         transition={{ type: "spring", stiffness: 400, damping: 20 }}
                       >

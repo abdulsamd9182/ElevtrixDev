@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pb-24 overflow-hidden bg-white flex items-start pt-40">
+    <section className="relative w-full min-h-screen pb-24 overflow-hidden bg-white flex items-center lg:items-start pt-28 md:pt-40">
       {/* Video Background with Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -40,25 +40,25 @@ export default function Hero() {
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
           }}
-          className="space-y-5 max-w-xl"
+          className="space-y-5 max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
         >
           {/* Main Heading */}
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white drop-shadow-xl"
+            className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white drop-shadow-xl"
           >
-            ENGINEERING <br />
+            ENGINEERING <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
-              CRAWL PERFORMANCE <br /> & SITE SPEED
+              CRAWL PERFORMANCE <br className="hidden md:block" /> & SITE SPEED
             </span>{" "}
-            <br />
+            <br className="hidden md:block" />
             AT THE CORE.
           </motion.h1>
 
           {/* Subheading */}
           <motion.p
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="text-white text-sm md:text-base font-medium leading-relaxed max-w-md drop-shadow-sm"
+            className="text-white text-sm md:text-base font-medium leading-relaxed max-w-md mx-auto lg:mx-0 drop-shadow-sm"
           >
             We optimize the technical foundation that drives search rankings. From Core Web Vitals to server-side rendering architecture, we ensure your site is perfectly engineered for search engine efficiency.
           </motion.p>
@@ -66,7 +66,7 @@ export default function Hero() {
           {/* Buttons */}
           <motion.div
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="flex flex-wrap gap-3 pt-3"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-3"
           >
             <Link href="/hire-us" passHref>
               <motion.button

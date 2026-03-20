@@ -213,18 +213,18 @@ export default function Overview() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-5"
           >
-            <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6">
+            <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-[1.2] mb-6 text-center lg:text-left">
               REDEFINING <br />
               <span className="text-blue-600">
                 USER EXPERIENCES
               </span>
             </div>
 
-            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
               We don't just design interfaces; we craft emotional connections. Our approach merges cognitive psychology with minimalist aesthetics to build digital habitats.
             </p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto lg:mx-0">
               {stats.map((stat) => (
                 <div key={stat.label} className="p-4 bg-gray-50/50 rounded-2xl border border-gray-100">
                   <div className="text-2xl font-black text-gray-900 mb-1">
